@@ -1,5 +1,7 @@
 # Azure credentials — never commit these
 azure/azure_config.json
+azure/mlflow_tracking_uri.txt
+azure/endpoint_config.json
 
 # MLflow generated files
 mlflow.db
