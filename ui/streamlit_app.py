@@ -8,6 +8,8 @@ Tabs:
   3. Monitoring Dashboard      — drift metrics across 3 time windows
 """
 
+import html as _html
+import json
 import sys
 import os
 import warnings
@@ -47,8 +49,6 @@ def load_azure_config() -> dict:
             return json.load(f)
     return {}
 
-
-import json
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from src.preprocess import load_and_preprocess
@@ -266,7 +266,7 @@ with tab1:
                 )
 
                 # ── Retention strategy ───────────────────────────────────
-                st.markdown(f'<div class="strategy-box">💡 <strong>Retention Strategy</strong><br>{strategy}</div>',
+                st.markdown(f'<div class="strategy-box">💡 <strong>Retention Strategy</strong><br>{_html.escape(strategy)}</div>',
                             unsafe_allow_html=True)
 
                 # ── ROI calculator ───────────────────────────────────────

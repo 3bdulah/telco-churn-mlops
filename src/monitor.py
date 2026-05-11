@@ -33,7 +33,7 @@ from preprocess import load_and_preprocess, NUMERIC_COLS
 
 warnings.filterwarnings("ignore")
 
-MLFLOW_TRACKING_URI = "http://localhost:5500"
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5500")
 MONITOR_EXPERIMENT  = "Churn_Monitoring"
 MODEL_NAME          = "ChurnPredictionModel"
 MODEL_STAGE         = "Production"

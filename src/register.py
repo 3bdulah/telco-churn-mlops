@@ -19,7 +19,7 @@ from preprocess import load_and_preprocess
 
 warnings.filterwarnings("ignore")
 
-MLFLOW_TRACKING_URI = "http://localhost:5500"
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5500")
 EXPERIMENT_NAME = "Telco_Churn_Experiments"
 MODEL_NAME = "ChurnPredictionModel"
 F1_THRESHOLD = 0.55    # Minimum F1 to promote to Production
