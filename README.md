@@ -359,10 +359,6 @@ python azure/deploy_endpoint.py
 
 ## 📦 Submission
 
-```
-PRJ-AbdullahAl-Shobaki-2284612.zip
-```
-
 | | |
 |---|---|
 | **Student** | Abdullah Hani Abdellatif Al-Shobaki |
@@ -371,4 +367,4 @@ PRJ-AbdullahAl-Shobaki-2284612.zip
 | **University** | Bahçeşehir University |
 | **Semester** | Spring 2026 |
 | **Instructor** | Gökşin BAKIR |
-| **Due Date** | June 1–8, 2026 |
+| **Due Date** | June 1, 2026 |
