@@ -31,7 +31,7 @@ all tracked, versioned, and monitored with MLflow.*
 ┌──────────────────────────▼──────────────────────────────────────┐
 │                   EXPERIMENT TRACKING  (MLflow)                 │
 │  train.py → 4 models + CV + SHAP  │  tune.py → 50 Hyperopt      │
-│  Telco_Churn_Experiments           │  trials (nested runs)       │
+│  Telco_Churn_Experiments           │  trials (nested runs)      │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────────┐
@@ -54,7 +54,7 @@ all tracked, versioned, and monitored with MLflow.*
 └──────┬──────────────────────────────────────────────────────────┘
        │
 ┌──────▼──────────────────────────────────────────────────────────┐
-│                   ☁️  AZURE ML CLOUD                             │
+│                   ☁️  AZURE ML CLOUD                            │
 │  Workspace: ain3009-churn-ws  (Sweden Central)                  │
 │  Compute:   churn-cluster  (Standard_DS3_v2, auto-scale 0→2)    │
 │  Registry:  ChurnPredictionModel v1  (live)                     │
