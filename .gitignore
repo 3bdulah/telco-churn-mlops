@@ -1,0 +1,27 @@
+# Azure credentials — never commit these
+azure/azure_config.json
+
+# MLflow generated files
+mlflow.db
+mlartifacts/
+mlruns/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Claude Code
+.claude/
+
+# Temp files
+/tmp/
+*.tmp

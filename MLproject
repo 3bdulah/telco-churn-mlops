@@ -1,0 +1,26 @@
+name: TelcoChurnMLOps
+
+python_env: python_env.yaml
+
+entry_points:
+  train:
+    command: "python src/train.py"
+
+  tune:
+    command: "python src/tune.py"
+
+  register:
+    command: "python src/register.py"
+
+  monitor:
+    command: "python src/monitor.py"
+
+  ui:
+    command: "streamlit run ui/streamlit_app.py --server.port 8501"
+
+  all:
+    command: >
+      python src/train.py &&
+      python src/tune.py &&
+      python src/register.py &&
+      python src/monitor.py

@@ -1,0 +1,1 @@
+azureml://swedencentral.api.azureml.ms/mlflow/v2.0/subscriptions/5a10de07-f9cf-4217-b058-e14c6c029b22/resourceGroups/rg-ain3009-mlops/providers/Microsoft.MachineLearningServices/workspaces/ain3009-churn-ws
