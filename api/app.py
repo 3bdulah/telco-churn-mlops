@@ -7,12 +7,16 @@ Endpoints:
 """
 
 import os
+import joblib
+import tempfile
 import warnings
 from typing import Optional
 
 import numpy as np
 import pandas as pd
+import mlflow
 import mlflow.sklearn
+from mlflow.tracking import MlflowClient
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
@@ -34,15 +38,32 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Load model at startup — cached for the lifetime of the process
-_model = None
+# Load model + scaler at startup — cached for the lifetime of the process
+_model  = None
+_scaler = None  # real scaler loaded from MLflow; None → hardcoded fallback
+
+
+def _load_scaler_from_mlflow() -> object:
+    """Download the scaler artifact logged alongside the Production model run."""
+    try:
+        client   = MlflowClient()
+        versions = client.get_latest_versions(MODEL_NAME, stages=[MODEL_STAGE])
+        if not versions:
+            return None
+        run_id = versions[0].run_id
+        with tempfile.TemporaryDirectory() as tmp:
+            path = client.download_artifacts(run_id, "scaler/scaler.pkl", tmp)
+            return joblib.load(path)
+    except Exception:
+        return None  # fall back to hardcoded SCALER_MEAN / SCALER_STD
 
 
 def get_model():
-    global _model
+    global _model, _scaler
     if _model is None:
         model_uri = f"models:/{MODEL_NAME}/{MODEL_STAGE}"
-        _model = mlflow.sklearn.load_model(model_uri)
+        _model  = mlflow.sklearn.load_model(model_uri)
+        _scaler = _load_scaler_from_mlflow()
     return _model
 
 
@@ -116,9 +137,16 @@ def build_feature_vector(customer: CustomerFeatures) -> np.ndarray:
     for col in BINARY_COLS:
         row[col] = BINARY_MAP.get(str(d.get(col, "No")), 0)
 
-    # Scale numeric
-    for col in ["tenure", "MonthlyCharges", "TotalCharges"]:
-        row[col] = (float(d[col]) - SCALER_MEAN[col]) / SCALER_STD[col]
+    # Scale numeric — use the real scaler artifact when available
+    _NUMERIC = ["tenure", "MonthlyCharges", "TotalCharges"]
+    if _scaler is not None:
+        raw = np.array([[float(d[c]) for c in _NUMERIC]])
+        scaled = _scaler.transform(raw)[0]
+        for col, val in zip(_NUMERIC, scaled):
+            row[col] = float(val)
+    else:
+        for col in _NUMERIC:
+            row[col] = (float(d[col]) - SCALER_MEAN[col]) / SCALER_STD[col]
 
     # One-hot InternetService
     for cat in INTERNET_CATS:

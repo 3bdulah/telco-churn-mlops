@@ -8,6 +8,7 @@ Uses Gradient Boosting as the base model (best performer from baseline training)
 import os
 import sys
 import warnings
+import joblib
 import numpy as np
 
 from sklearn.ensemble import GradientBoostingClassifier
@@ -72,7 +73,7 @@ def objective(params, X_train, X_test, y_train, y_test, parent_run_id):
 
 def main():
     print("Loading data ...")
-    X_train, X_test, y_train, y_test, feature_names, _ = load_and_preprocess()
+    X_train, X_test, y_train, y_test, feature_names, scaler = load_and_preprocess()
 
     mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
@@ -93,6 +94,11 @@ def main():
         mlflow.log_param("max_evals", MAX_EVALS)
 
         parent_run_id = parent_run.info.run_id
+
+        scaler_path = "/tmp/scaler_tuning.pkl"
+        joblib.dump(scaler, scaler_path)
+        mlflow.log_artifact(scaler_path, artifact_path="scaler")
+
         trials = Trials()
 
         best = fmin(

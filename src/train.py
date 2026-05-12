@@ -9,6 +9,7 @@ Extras: SMOTE balancing, class_weight, 5-fold CV, SHAP summary plots per model
 import os
 import sys
 import warnings
+import joblib
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -122,7 +123,7 @@ def compute_metrics(y_true, y_pred, y_prob):
 
 
 def run_experiment(model, params: dict, model_name: str,
-                   X_train, X_test, y_train, y_test, feature_names):
+                   X_train, X_test, y_train, y_test, feature_names, scaler):
     mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
 
@@ -158,6 +159,11 @@ def run_experiment(model, params: dict, model_name: str,
         if shap_path:
             mlflow.log_artifact(shap_path, artifact_path="plots")
 
+        # Log scaler so the API can load it instead of using hardcoded stats
+        scaler_path = f"/tmp/scaler_{model_name.replace(' ', '_')}.pkl"
+        joblib.dump(scaler, scaler_path)
+        mlflow.log_artifact(scaler_path, artifact_path="scaler")
+
         # Log model artifact
         mlflow.sklearn.log_model(
             model,
@@ -175,7 +181,7 @@ def run_experiment(model, params: dict, model_name: str,
 
 def main():
     print("Loading and preprocessing data (with SMOTE) ...")
-    X_train, X_test, y_train, y_test, feature_names, _ = load_and_preprocess(use_smote=True)
+    X_train, X_test, y_train, y_test, feature_names, scaler = load_and_preprocess(use_smote=True)
     print(f"  Train={X_train.shape} (balanced)  Test={X_test.shape}")
 
     # class_weight ratio for XGBoost: n_negative / n_positive (before SMOTE was 73/27 ≈ 2.7)
@@ -219,7 +225,7 @@ def main():
     results = []
     for model, params, name in models:
         run_id, metrics = run_experiment(
-            model, params, name, X_train, X_test, y_train, y_test, feature_names
+            model, params, name, X_train, X_test, y_train, y_test, feature_names, scaler
         )
         results.append((name, metrics["f1"], metrics["roc_auc"], run_id))
 

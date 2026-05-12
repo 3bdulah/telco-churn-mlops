@@ -93,7 +93,7 @@ def load_data():
     return X_train, X_test, y_train, y_test, feature_names, scaler
 
 
-@st.cache_data(show_spinner="Fetching MLflow runs...")
+@st.cache_data(ttl=120, show_spinner="Fetching MLflow runs...")
 def get_experiment_runs(experiment_name: str) -> pd.DataFrame:
     try:
         exp = mlflow.get_experiment_by_name(experiment_name)
@@ -213,12 +213,14 @@ with tab1:
                         headers=headers,
                         timeout=30,
                     )
+                    resp.raise_for_status()
                     result = resp.json()
                     # Azure scoring script returns snake_case keys directly
                     st.caption("☁️ Prediction served from **Azure ML Online Endpoint**")
                 else:
                     # ── Call local FastAPI ────────────────────────────────
                     resp = requests.post(f"{API_URL}/predict", json=payload, timeout=10)
+                    resp.raise_for_status()
                     result = resp.json()
                     st.caption("🖥️ Prediction served from **local FastAPI**")
 
