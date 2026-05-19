@@ -117,13 +117,15 @@ all tracked, versioned, and monitored with MLflow.*
 PRJ-AbdullahAl-Shobaki-2284612/
 │
 ├── data/
-│   └── WA_Fn-UseC_-Telco-Customer-Churn.csv   # 7,043 customers · 21 features
+│   ├── WA_Fn-UseC_-Telco-Customer-Churn.csv   # 7,043 customers · 21 features
+│   └── *.png                                   # EDA visualizations
 │
 ├── notebooks/
 │   ├── 01_eda.ipynb                            # EDA — distributions, correlations, churn analysis
 │   └── 02_feature_engineering.ipynb            # Feature importance & preprocessing pipeline
 │
 ├── src/
+│   ├── __init__.py
 │   ├── preprocess.py    # Cleaning · label encoding · SMOTE · StandardScaler · train/test split
 │   ├── train.py         # 4 models · SHAP beeswarm · 5-fold CV · full MLflow tracking
 │   ├── tune.py          # Hyperopt TPE · 50 trials · nested MLflow runs · best model saved
@@ -144,6 +146,15 @@ PRJ-AbdullahAl-Shobaki-2284612/
 │       ├── score.py         # Self-contained scoring script for Azure endpoint
 │       └── conda.yaml       # Conda environment for Azure deployment
 │
+├── report/
+│   ├── Telco_Churn_MLOps_Report.pdf
+│   └── Telco_Churn_MLOps_Report.docx
+│
+├── presentation/
+│   └── Telco_Churn_MLOps_Presentation.pptx
+│
+├── screenshots/         # 14 annotated screenshots of the live system
+│
 ├── MLproject            # MLflow Projects — 6 reproducible entrypoints
 ├── python_env.yaml      # Python environment spec for MLflow Projects
 ├── requirements.txt     # All dependencies (pinned versions)
@@ -158,7 +169,7 @@ PRJ-AbdullahAl-Shobaki-2284612/
 ### 1. Clone & install dependencies
 
 ```bash
-git clone https://github.com/AbdullahAl-Shobaki/PRJ-AbdullahAl-Shobaki-2284612.git
+git clone https://github.com/3bdulah/telco-churn-mlops.git
 cd PRJ-AbdullahAl-Shobaki-2284612
 pip install -r requirements.txt
 ```
@@ -324,6 +335,28 @@ python azure/deploy_endpoint.py
 | **Models → ChurnPredictionModel** | Version history · Staging/Production stage transitions |
 | **Any Run → Artifacts → plots/** | Confusion matrix · ROC curve · SHAP beeswarm |
 | **Monitoring Run → Artifacts → drift_reports/** | Evidently AI full HTML drift report |
+
+---
+
+## 📸 Screenshots
+
+### MLflow Tracking Server
+![MLflow Tracking Server](screenshots/%232_mlflow_tracking_server.png)
+
+### Hyperparameter Tuning — Nested Runs
+![Nested Hypertuning Runs](screenshots/%235_nested_hypertuning_runs.png)
+
+### Model Registry — Staging → Production
+![Model Registry](screenshots/%236_model_registry.png)
+
+### FastAPI Swagger UI
+![FastAPI Swagger UI](screenshots/%237_fastapi_swagger_ui.png)
+
+### Streamlit Dashboard
+![Streamlit Dashboard](screenshots/%238_streamlit_dashboard.png)
+
+### Drift Monitoring Runs in MLflow
+![MLflow Monitoring Runs](screenshots/%2311_mlflow_monitoring_runs.png)
 
 ---
 
