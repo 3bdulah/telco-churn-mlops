@@ -1,6 +1,6 @@
 """
 Streamlit Dashboard — Telco Customer Churn Prediction
-AIN-3009 MLOps Term Project | Abdullah Hani Abdellatif Al-Shobaki — 2284612
+AIN-3009 MLOps Term Project | Abdullah Hani Abdellatif Al-Shobaki — 
 
 Tabs:
   1. Customer Churn Predictor  — live prediction + SHAP + ROI calculator
@@ -555,7 +555,7 @@ with tab3:
 st.markdown("---")
 st.caption(
     "AIN-3009 MLOps Term Project · Bahçeşehir University · "
-    "Abdullah Hani Abdellatif Al-Shobaki — 2284612 · "
+    "Abdullah Hani Abdellatif Al-Shobaki — · "
     "Model: ChurnPredictionModel (Production) · "
     f"MLflow: {MLFLOW_URI}"
 )
