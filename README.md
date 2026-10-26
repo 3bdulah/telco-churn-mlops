@@ -10,7 +10,7 @@
 ![Azure ML](https://img.shields.io/badge/Azure_ML-Cloud-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
 
 **AIN-3009 MLOps Term Project — Bahçeşehir University**
-**Student:** Abdullah Hani Abdellatif Al-Shobaki · `2284612`
+**Author:** Abdullah Hani Abdellatif Al-Shobaki
 
 *A production-grade, end-to-end MLOps system that predicts telecom customer churn in real time,
 explains every decision with SHAP, and proactively recommends retention strategies —
@@ -55,9 +55,9 @@ all tracked, versioned, and monitored with MLflow.*
        │
 ┌──────▼──────────────────────────────────────────────────────────┐
 │                   ☁️  AZURE ML CLOUD                            │
-│  Workspace: ain3009-churn-ws  (Sweden Central)                  │
+│  Example workspace: ain3009-churn-ws (Sweden Central)           │
 │  Compute:   churn-cluster  (Standard_DS3_v2, auto-scale 0→2)    │
-│  Registry:  ChurnPredictionModel v1  (live)                     │
+│  Registry:  ChurnPredictionModel v1 (deployment-dependent)      │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
