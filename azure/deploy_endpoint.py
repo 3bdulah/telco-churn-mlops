@@ -224,7 +224,7 @@ def create_endpoint(client: MLClient, cfg: dict) -> ManagedOnlineEndpoint:
         identity=IdentityConfiguration(type="system_assigned"),
         tags={
             "project": "AIN3009-MLOps",
-            "student": "Abdullah-Al-Shobaki-2284612",
+            "student": "Abdullah-Al-Shobaki-",
         },
     )
     print("  Creating endpoint (takes ~1-2 minutes) ...")
