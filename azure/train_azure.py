@@ -109,7 +109,7 @@ def submit_training_job(client: MLClient, cfg: dict, env_ref: str) -> str:
         ),
         tags={
             "project": "AIN3009-MLOps",
-            "student": "Abdullah-Al-Shobaki-2284612",
+            "student": "Abdullah-Al-Shobaki-",
             "dataset": "Telco-Customer-Churn",
         },
         environment_variables={
