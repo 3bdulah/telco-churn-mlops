@@ -77,7 +77,7 @@ all tracked, versioned, and monitored with MLflow.*
 | **Live Dashboard** | Streamlit · Plotly gauge · SHAP charts · ROI calculator |
 | **Model Registry** | MLflow Registry · Staging → Production lifecycle management |
 | **Reproducibility** | `MLproject` file — full pipeline as one-command entrypoints |
-| **Cloud** | Azure ML workspace · compute cluster · registered model (live) |
+| **Cloud** | Azure ML workspace, compute cluster, and model registry (when provisioned) |
 
 ---
 
@@ -114,7 +114,7 @@ all tracked, versioned, and monitored with MLflow.*
 ## 🗂️ Project Structure
 
 ```
-PRJ-AbdullahAl-Shobaki-2284612/
+PRJ-AbdullahAl-Shobaki-/
 │
 ├── data/
 │   ├── WA_Fn-UseC_-Telco-Customer-Churn.csv   # 7,043 customers · 21 features
@@ -153,7 +153,7 @@ PRJ-AbdullahAl-Shobaki-2284612/
 ├── presentation/
 │   └── Telco_Churn_MLOps_Presentation.pptx
 │
-├── screenshots/         # 14 annotated screenshots of the live system
+├── screenshots/         # 14 annotated screenshots of the project workflow
 │
 ├── MLproject            # MLflow Projects — 6 reproducible entrypoints
 ├── python_env.yaml      # Python environment spec for MLflow Projects
@@ -395,7 +395,7 @@ python azure/deploy_endpoint.py
 | | |
 |---|---|
 | **Student** | Abdullah Hani Abdellatif Al-Shobaki |
-| **Student ID** | 2284612 |
+| **Student ID** |  |
 | **Course** | AIN-3009 MLOps |
 | **University** | Bahçeşehir University |
 | **Semester** | Spring 2026 |
