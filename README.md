@@ -170,7 +170,7 @@ PRJ-AbdullahAl-Shobaki-2284612/
 
 ```bash
 git clone https://github.com/3bdulah/telco-churn-mlops.git
-cd PRJ-AbdullahAl-Shobaki-2284612
+cd telco-churn-mlops
 pip install -r requirements.txt
 ```
 
@@ -313,14 +313,14 @@ python azure/train_azure.py
 python azure/deploy_endpoint.py
 ```
 
-**Live Azure resources (Sweden Central):**
+**Azure ML deployment configuration example (Sweden Central):**\n\nThe resource names below document the project configuration. Availability and deployment state can change; verify resources in your own Azure account before relying on them.
 
 | Resource | Name | Status |
 |---|---|---|
-| Resource Group | `rg-ain3009-mlops` | ✅ Live |
-| ML Workspace | `ain3009-churn-ws` | ✅ Live |
-| Compute Cluster | `churn-cluster` (Standard_DS3_v2) | ✅ Live |
-| Registered Model | `ChurnPredictionModel v1` | ✅ Live |
+| Resource Group | `rg-ain3009-mlops` | Example name |
+| ML Workspace | `ain3009-churn-ws` | Example name |
+| Compute Cluster | `churn-cluster` (Standard_DS3_v2) | Example name |
+| Registered Model | `ChurnPredictionModel v1` | Example name |
 
 ---
 
