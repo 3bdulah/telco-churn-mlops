@@ -12,9 +12,7 @@
 **AIN-3009 MLOps Term Project — Bahçeşehir University**
 **Author:** Abdullah Hani Abdellatif Al-Shobaki
 
-*A production-grade, end-to-end MLOps system that predicts telecom customer churn in real time,
-explains every decision with SHAP, and proactively recommends retention strategies —
-all tracked, versioned, and monitored with MLflow.*
+*An end-to-end MLOps course prototype for telecom churn prediction, combining model comparison, experiment tracking, SHAP explainability, drift-monitoring experiments, and a prediction API. Cloud resources and managed endpoints are created only when the deployment steps are run in an appropriately configured Azure account.*
 
 </div>
 
